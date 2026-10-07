@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Graphiques Dynamiques</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Plotly JS -->
+    <script src="https://cdn.plot.ly/plotly-2.26.2.min.js"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Analyse ANSSI</a>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('home') }}">Retour à l'Accueil</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Container principal -->
+    <div class="container mt-5">
+        <h1 class="text-center text-primary mb-4">Graphiques Dynamiques - Analyse des Vulnérabilités</h1>
+
+        <!-- Graphiques affichés un par un -->
+        <div class="row">
+            <!-- Card: CVSS Histogram -->
+            <div class="col-md-12 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h3 class="text-secondary">Histogramme des Scores CVSS</h3>
+                        <div id="cvss_histogram"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Card: CWE Pie Chart -->
+            <div class="col-md-12 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h3 class="text-secondary">Diagramme Circulaire des Types de Vulnérabilités (CWE)</h3>
+                        <div id="cwe_pie"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Card: EPSS Line Chart -->
+            <div class="col-md-12 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h3 class="text-secondary">Courbe des Scores EPSS</h3>
+                        <div id="epss_line"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Card: Products Bar Chart -->
+            <div class="col-md-12 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h3 class="text-secondary">Classement des Produits les Plus Affectés</h3>
+                        <div id="products_bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Card: Heatmap -->
+            <div class="col-md-12 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h3 class="text-secondary">Corrélation entre CVSS et EPSS</h3>
+                        <div id="heatmap"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Card: Scatter Plot -->
+            <div class="col-md-12 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h3 class="text-secondary">Nuage de Points entre CVSS et EPSS</h3>
+                        <div id="scatter_plot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Card: Boxplot -->
+            <div class="col-md-12 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h3 class="text-secondary">Distribution des Scores CVSS par Éditeur</h3>
+                        <div id="boxplot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Card: Time Series -->
+            <div class="col-md-12 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h3 class="text-secondary">Évolution Temporelle des Vulnérabilités Détectées</h3>
+                        <div id="time_series"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p>&copy; 2024 - Projet Analyse ANSSI | ESILV</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plotly Scripts pour afficher les graphiques -->
+    <script>
+        var fig_cvss = {{ charts['cvss_histogram']|safe }};
+        Plotly.newPlot('cvss_histogram', fig_cvss.data, fig_cvss.layout);
+
+        var fig_cwe = {{ charts['cwe_pie']|safe }};
+        Plotly.newPlot('cwe_pie', fig_cwe.data, fig_cwe.layout);
+
+        var fig_epss = {{ charts['epss_line']|safe }};
+        Plotly.newPlot('epss_line', fig_epss.data, fig_epss.layout);
+
+        var fig_products = {{ charts['products_bar']|safe }};
+        Plotly.newPlot('products_bar', fig_products.data, fig_products.layout);
+
+        var fig_heatmap = {{ charts['heatmap']|safe }};
+        Plotly.newPlot('heatmap', fig_heatmap.data, fig_heatmap.layout);
+
+        var fig_scatter = {{ charts['scatter_plot']|safe }};
+        Plotly.newPlot('scatter_plot', fig_scatter.data, fig_scatter.layout);
+
+        var fig_boxplot = {{ charts['boxplot']|safe }};
+        Plotly.newPlot('boxplot', fig_boxplot.data, fig_boxplot.layout);
+
+        var fig_timeseries = {{ charts['time_series']|safe }};
+        Plotly.newPlot('time_series', fig_timeseries.data, fig_timeseries.layout);
+    </script>
+</body>
+</html>
