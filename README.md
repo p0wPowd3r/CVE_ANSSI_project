@@ -68,8 +68,6 @@ Un compte dédié a été créé pour le projet.
 
 Pour l'envoi d'e-mails, il est nécessaire de configurer un **mot de passe d'application Google**.
 
-> ⚠️ Ne partagez jamais votre adresse e-mail, votre mot de passe ou votre mot de passe d'application dans le dépôt GitHub.
-
 ---
 
 ## Cloner le dépôt
@@ -77,13 +75,13 @@ Pour l'envoi d'e-mails, il est nécessaire de configurer un **mot de passe d'app
 Clonez le projet avec :
 
 ```bash
-git clone https://github.com/Sechelige/python_projet_anssi.git
+git clone https://github.com/badmiaou/CVE_ANSSI_project.git
 ```
 
 Puis placez-vous dans le dossier du projet :
 
 ```bash
-cd python_projet_anssi/src/webb_app
+cd CVE_ANSSI_project/src/webb_app
 ```
 
 ---
@@ -91,7 +89,7 @@ cd python_projet_anssi/src/webb_app
 ## Structure du projet
 
 ```text
-python_projet_anssi/
+CVE_ANSSI_project/
 │
 ├── src/
 │   └── webb_app/
